@@ -13,6 +13,8 @@ module.exports = async function restricted(req, res, next) {
       } else {
         res.status(401).json({ message: 'Invalid credentials' });
       }
+    } else {
+      res.status(401).json({ message: 'Please provide credentials' });
     }
   } catch (err) {
     res
