@@ -25,6 +25,18 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const restaurant = await Restaurant.getById(id);
+    res.status(200).json(restaurant);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ error: `Error retrieving restaurant with id of ${id}` });
+  }
+});
+
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const updateData = req.body;

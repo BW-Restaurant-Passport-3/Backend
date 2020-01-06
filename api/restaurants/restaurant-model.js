@@ -5,6 +5,7 @@ module.exports = {
   add,
   update,
   remove,
+  getById,
 };
 
 function getAll() {
@@ -12,8 +13,14 @@ function getAll() {
 }
 
 async function add(postData) {
-  const [id] = await db('restaurants').insert(postData);
-  return id;
+  const [id] = await db('restaurants').insert(postData, 'id');
+  return getById(id);
+}
+
+function getById(id) {
+  return db('restaurants')
+    .where({ id })
+    .first();
 }
 
 function update(id, updateData) {
