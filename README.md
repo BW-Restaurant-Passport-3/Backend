@@ -180,9 +180,38 @@ _HTTP Method:_ **[POST]**
 
 # User Routes
 
-## Get User passport by id
+### Gets list of all users.
 
-### Gets a list of restaurants for user.
+_Method URL:_ `api/users`
+
+_HTTP Method:_ **[GET]**
+
+#### Headers
+
+| Name            |  Type  | Required |              Description |
+| --------------- | :----: | -------: | -----------------------: |
+| `Content-Type`  | String |      Yes | Must be application/JSON |
+| `Authorization` | String |      Yes |           JSON Web Token |
+
+#### Response
+
+##### 200 (OK)
+
+> If users is found, the endpoint will return an HTTP response with a status code `200`.
+
+##### 404 (Not Found)
+
+> If users are not found, the endpoint will return an HTTP response with a status code `404`.
+
+##### 401 (Unauthorized)
+
+> If user does not have access, the endpoint will return an HTTP response with a status code of `401`.
+
+##### 500 (Internal Service Error)
+
+> If there is a server or database error, the endpoint will return an HTTP response with a status code of `500`.
+
+### Gets user by ID.
 
 _Method URL:_ `api/users/:id`
 
@@ -203,7 +232,69 @@ _HTTP Method:_ **[GET]**
 
 ##### 404 (Not Found)
 
-> If users are not found, the endpoint will return an HTTP response with a status code `404`.
+> If users with id is not found, the endpoint will return an HTTP response with a status code `404`.
+
+##### 401 (Unauthorized)
+
+> If user does not have access, the endpoint will return an HTTP response with a status code of `401`.
+
+##### 500 (Internal Service Error)
+
+> If there is a server or database error, the endpoint will return an HTTP response with a status code of `500`.
+
+### Deletes user by id.
+
+_Method URL:_ `api/users/:id`
+
+_HTTP Method:_ **[DELETE]**
+
+#### Headers
+
+| Name            |  Type  | Required |              Description |
+| --------------- | :----: | -------: | -----------------------: |
+| `Content-Type`  | String |      Yes | Must be application/JSON |
+| `Authorization` | String |      Yes |           JSON Web Token |
+
+#### Response
+
+##### 200 (OK)
+
+> If user with specified ID is found and deleted, the endpoint will return an HTTP response with a status code `200`.
+
+##### 404 (Not Found)
+
+> If user with specified ID is not found and deleted, the endpoint will return an HTTP response with a status code `404`.
+
+##### 401 (Unauthorized)
+
+> If user does not have access, the endpoint will return an HTTP response with a status code of `401`.
+
+##### 500 (Internal Service Error)
+
+> If there is a server or database error, the endpoint will return an HTTP response with a status code of `500`.
+
+### Gets user passpor by user ID.
+
+_Method URL:_ `api/users/:id/passport`
+
+_HTTP Method:_ **[GET]**
+
+#### Headers
+
+| Name            |  Type  | Required |              Description |
+| --------------- | :----: | -------: | -----------------------: |
+| `Content-Type`  | String |      Yes | Must be application/JSON |
+| `Authorization` | String |      Yes |           JSON Web Token |
+
+#### Response
+
+##### 200 (OK)
+
+> If users with id is found, the endpoint will return an HTTP response with a status code `200`.
+
+##### 404 (Not Found)
+
+> If users with id is not found, the endpoint will return an HTTP response with a status code `404`.
 
 ##### 401 (Unauthorized)
 
@@ -269,7 +360,7 @@ _HTTP Method:_ **[GET]**
 
 > If there is a server or database error, the endpoint will return an HTTP response with a status code of `500`.
 
-### Updates project by ID.
+### Updates restaurant by ID.
 
 _Method URL:_ `api/restaurant/:id`
 

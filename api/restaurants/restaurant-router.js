@@ -77,7 +77,9 @@ router.delete('/:id', async (req, res) => {
       res.status(404);
     }
   } catch (err) {
-    res.status(500).json({ error: 'Error deleting user from database', err });
+    res
+      .status(500)
+      .json({ error: 'Error deleting restaurant from database', err });
   }
 });
 
