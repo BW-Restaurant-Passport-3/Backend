@@ -273,7 +273,7 @@ _HTTP Method:_ **[DELETE]**
 
 > If there is a server or database error, the endpoint will return an HTTP response with a status code of `500`.
 
-### Gets user passpor by user ID.
+### Gets user passport by user ID.
 
 _Method URL:_ `api/users/:id/passport`
 
