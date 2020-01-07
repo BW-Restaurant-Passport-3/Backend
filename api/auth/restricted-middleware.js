@@ -1,24 +1,23 @@
-const bcrypt = require('bcryptjs');
-const Users = require('../users/users-model');
+const jwt = require('jsonwebtoken');
+const secrets = require('../../config/secrets');
 
-module.exports = async function restricted(req, res, next) {
-  const { username, password } = req.headers;
+module.exports = async (req, res, next) => {
+  const token = req.headers.authorization;
 
-  try {
-    if (username && password) {
-      const user = await Users.findBy({ username }).first();
-
-      if (user && bcrypt.compareSync(password, user.password)) {
-        next();
+  if (token) {
+    jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
+      if (err) {
+        res.status(401).json({
+          message:
+            "Cannot verify identity, Please Login in again or Sign up if you don't have an account",
+          err,
+        });
       } else {
-        res.status(401).json({ message: 'Invalid credentials' });
+        req.decodedJwt = decodedToken;
+        next();
       }
-    } else {
-      res.status(401).json({ message: 'Please provide credentials' });
-    }
-  } catch (err) {
-    res
-      .status(500)
-      .json({ error: 'Error validating credentials you cannot login', err });
+    });
+  } else {
+    res.status(401).json({ message: 'You must be logged into access this' });
   }
 };

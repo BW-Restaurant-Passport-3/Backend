@@ -17,6 +17,10 @@ router.post('/register', async (req, res) => {
     if (user) {
       const token = generateToken(user);
       res.status(201).json({ user, token });
+    } else {
+      res
+        .status(400)
+        .json({ message: 'Please provide registration information' });
     }
   } catch (err) {
     res.status(500).json({ error: 'Error registering user to database', err });
@@ -51,7 +55,9 @@ function generateToken(user) {
     expiresIn: '8h',
   };
 
-  return jwt.sign(payload, secrets.jwtSecret, options);
+  const token = jwt.sign(payload, secrets.jwtSecret, options);
+
+  return token;
 }
 
 module.exports = router;

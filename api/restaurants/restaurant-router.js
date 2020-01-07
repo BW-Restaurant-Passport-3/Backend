@@ -17,7 +17,12 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const restaurants = await Restaurant.getAll();
-    res.status(200).json(restaurants);
+
+    if (restaurants) {
+      res.status(200).json(restaurants);
+    } else {
+      res.status(404);
+    }
   } catch (err) {
     res
       .status(500)
@@ -27,9 +32,14 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
+
   try {
     const restaurant = await Restaurant.getById(id);
-    res.status(200).json(restaurant);
+    if (restaurant) {
+      res.status(200).json(restaurant);
+    } else {
+      res.status(404);
+    }
   } catch (err) {
     res
       .status(500)
@@ -43,7 +53,12 @@ router.put('/:id', async (req, res) => {
 
   try {
     const update = await Restaurant.update(id, updateData);
-    res.status(200).json(update);
+
+    if (update) {
+      res.status(200).json(update);
+    } else {
+      res.status(404);
+    }
   } catch (err) {
     res
       .status(500)
@@ -56,7 +71,11 @@ router.delete('/:id', async (req, res) => {
 
   try {
     const deletion = await Restaurant.remove(id);
-    res.status(200).json(deletion);
+    if (deletion) {
+      res.status(200).json(deletion);
+    } else {
+      res.status(404);
+    }
   } catch (err) {
     res.status(500).json({ error: 'Error deleting user from database', err });
   }

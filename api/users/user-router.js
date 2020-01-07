@@ -6,7 +6,16 @@ router.get('/:id', async (req, res) => {
 
   try {
     const restaurants = await User.getRestaurants(id);
-    res.status(200).json(restaurants);
+
+    if (restaurants) {
+      res.status(200).json(restaurants);
+    } else {
+      res
+        .status(404)
+        .json({
+          message: 'User does not have any restaurants in his passport',
+        });
+    }
   } catch (err) {
     res
       .status(500)
