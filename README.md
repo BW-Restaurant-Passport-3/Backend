@@ -130,7 +130,7 @@ _HTTP Method:_ **[POST]**
 
 ##### 201 (Created)
 
-> If you successfully register a user, the endpoint will return an HTTP response with a status code `201`.
+> If you successfully register a user, the endpoint will return an HTTP response with a status code `201`, a JWT and the user id for the registered user.
 
 ##### 400 (Bad Request)
 
@@ -168,7 +168,7 @@ _HTTP Method:_ **[POST]**
 
 ##### 200 (OK)
 
-> If you successfully log in, the endpoint will return an HTTP response with a status code `200`.
+> If you successfully log in, the endpoint will return an HTTP response with a status code `200`, a JWT and the user id for the logged in user.
 
 ##### 401 (Unauthorized)
 
