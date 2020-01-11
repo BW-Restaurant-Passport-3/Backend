@@ -20,7 +20,9 @@ router.post('/register', async (req, res) => {
     } else {
       res
         .status(400)
-        .json({ message: 'Please provide registration information' });
+        .json({
+          message: 'Please provide all necessary registration information',
+        });
     }
   } catch (err) {
     res.status(500).json({ error: 'Error registering user to database', err });

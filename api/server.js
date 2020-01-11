@@ -16,5 +16,13 @@ server.use(express.json());
 server.use('/api/auth', authRouter);
 server.use('/api/restaurants', restricted, restaurantRouter);
 server.use('/api/users', restricted, userRouter);
+server.get('/', (req, res) => {
+  res
+    .status(200)
+    .json({
+      messge:
+        'Hello this is the API for restaurant passport. Take a look at the documentation for more information',
+    });
+});
 
 module.exports = server;
