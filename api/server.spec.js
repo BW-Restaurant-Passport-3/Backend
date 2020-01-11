@@ -23,11 +23,11 @@ describe('server.js', () => {
       const response = await request(server)
         .post('/api/auth/register')
         .send({
-          username: 'user5',
+          username: 'user7',
           password: 'password',
           name: 'Dude',
           city: 'NY',
-          email: 'dude@email.com',
+          email: 'dude2@email.com',
         });
 
       expect(response.type).toBe('application/json');
@@ -37,11 +37,11 @@ describe('server.js', () => {
       const response = await request(server)
         .post('/api/auth/register')
         .send({
-          username: 'user6',
+          username: 'user8',
           password: 'password',
           name: 'Mr. Mr',
           city: 'Paris',
-          email: 'mr@email.com',
+          email: 'mr2@email.com',
         });
 
       expect(response.status).toEqual(201);

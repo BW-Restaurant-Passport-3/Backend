@@ -21,7 +21,7 @@ module.exports = {
   testing: {
     client: 'sqlite3',
     connection: {
-      filename: './database/passport.db3',
+      filename: './database/test.db3',
     },
     useNullAsDefault: true,
     pool: {
